@@ -1,6 +1,6 @@
 import './Modules/collections'
 
-const x = ["a", ""]
+const x = ["a", "dad"]
 
 const a =  x.select(r => r === "a")
 switch(a.type) {
@@ -14,8 +14,6 @@ switch(a.type) {
         throw "type not supported"
 }
 
-const j = Object.getOwnPropertyNames(x)
-console.log(j);
 
 
 

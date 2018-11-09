@@ -1,12 +1,13 @@
-//functional types 
+//Functional types 
 type option<T> = {type : "some", value : T} | {type : "none", ex : string}
 
 //Interface
 interface Array<T> {
     select(this : T[], predicate : (value : T) => boolean) : option<T>;
     contains(this : T[], predicate : (value : T) => boolean) : boolean;
-    last(this : T[]) : T
-    first(this: T[]) : T
+    last(this : T[]) : T;
+    first(this: T[]) : T;
+    count(this : T[]) : number;
 }
 
 //ExtensionMethods
@@ -22,12 +23,17 @@ Array.prototype.contains = function<T>(this : T[], predicate : (value : T) => bo
     return !!this.find(predicate)
 }
 
-Array.prototype.last = function<T>(this : T[]) : T {
-    return this[this.length - 1]
+Array.prototype.first = function<T>(this: T[]) : T {
+    const [first] = this;
+    return first
 }
 
-Array.prototype.first = function<T>(this: T[]) : T {
-    return this[0]
+Array.prototype.count = function<T>(this : T[]) : number {
+    return this.length - 1
+}
+
+Array.prototype.last = function<T>(this : T[]) : T {
+    return this[this.count()]
 }
 
 

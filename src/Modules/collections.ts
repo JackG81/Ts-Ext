@@ -8,6 +8,7 @@ interface Array<T> {
     last(this : T[]) : T;
     first(this: T[]) : T;
     count(this : T[]) : number;
+    distinct<T>(this : T[]) : T[]
 }
 
 //ExtensionMethods
@@ -34,6 +35,10 @@ Array.prototype.count = function<T>(this : T[]) : number {
 
 Array.prototype.last = function<T>(this : T[]) : T {
     return this[this.count()]
+}
+
+Array.prototype.distinct = function<T>(this : T[]) : T[] {
+    return [...new Set(this)];
 }
 
 

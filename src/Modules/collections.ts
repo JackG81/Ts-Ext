@@ -1,15 +1,17 @@
 //Functional types 
-type option<T> = {type : "some", value : T} | {type : "none", ex : string}
+import {option} from './results'
 
-//Interface
-interface Array<T> {
-    select(this : T[], predicate : (value : T) => boolean) : option<T>;
-    contains(this : T[], predicate : (value : T) => boolean) : boolean;
-    last(this : T[]) : T;
-    first(this: T[]) : T;
-    count(this : T[]) : number;
-    distinct(this : T[]) : T[]
-    selectAll(this : T[], predicate : (value : T) => boolean) : T[]
+declare global { 
+    //Interface
+    interface Array<T> {
+        select(this : T[], predicate : (value : T) => boolean) : option<T>;
+        contains(this : T[], predicate : (value : T) => boolean) : boolean;
+        last(this : T[]) : T;
+        first(this: T[]) : T;
+        count(this : T[]) : number;
+        distinct(this : T[]) : T[]
+        selectAll(this : T[], predicate : (value : T) => boolean) : T[]
+    }
 }
 
 //ExtensionMethods
@@ -18,7 +20,7 @@ Array.prototype.select = function<T>(this : T[], predicate : (value : T) => bool
     if(element){
         return {type : "some", value : element}
     }
-    return {type : "none", ex : "not found in array"}
+    return {type : "none"}
 }
 
 Array.prototype.contains = function<T>(this : T[], predicate : (value : T) => boolean) : boolean {
@@ -57,4 +59,4 @@ Array.prototype.selectAll = function<T>(this : T[], predicate : (value : T) => b
 
 
 
-
+export {}
